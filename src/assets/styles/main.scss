@@ -1,0 +1,57 @@
+@use './partials/variables' as *;
+
+$fa-font-path: '../webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import 'bootstrap/scss/bootstrap';
+
+/*
+ *  STYLE 9
+ */
+
+ #style-9::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     background-color: #a4aaad;
+ }
+ 
+ #style-9::-webkit-scrollbar
+ {
+     width: 10px;
+     background-color: #F5F5F5;
+ }
+ 
+ #style-9::-webkit-scrollbar-thumb
+ {
+     background-color: #F90;	
+     background-image: -webkit-linear-gradient(90deg,
+                                               rgba(255, 255, 255, .2) 25%,
+                                               transparent 25%,
+                                               transparent 50%,
+                                               rgba(255, 255, 255, .2) 50%,
+                                               rgba(255, 255, 255, .2) 75%,
+                                               transparent 75%,
+                                               transparent)
+ }
+ 
+ 
+
+ .btn-outline-orange {
+    --bs-btn-color: #e58946;
+    --bs-btn-border-color: #e58946;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg:#e58946;
+    --bs-btn-hover-border-color:#e58946;
+    --bs-btn-focus-shadow-rgb: 220, 53, 69;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg:#e58946;
+    --bs-btn-active-border-color:#e58946;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color:#e58946;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color:#e58946;
+    --bs-gradient: none;
+}
