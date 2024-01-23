@@ -1,10 +1,14 @@
 <template>
     <div class="container">
         <h1 class="text-light display-1 fw-normal text-center">Project list</h1>
+        <select name="types" id="types" v-model="selectedType">
+            <option value="">All</option>
+            <option v-for="type in store.types" :value="type.id" @click="selectedType= type.id" :key="type_id" >{{ type.name }}</option>
+        </select>
         <div class=" d-flex text-center align-items-center  justify-content-between ">
             <i class="fa-solid fa-chevron-left fa-2xl arrow left-arrow me-5 pe-5 " @click="previousPage()"></i>
             <div class="row">
-                <div class="col-12 col-md-4 col-lg-6 gy-5 " v-for="project in store.projects" :key="project.id">
+                <div class="col-12 col-md-4 col-lg-6 gy-5 " v-for="project in  selectType" :key="project.id">
                     <ProjectCard :project="project"/>
                 </div>
             </div>
@@ -19,6 +23,7 @@
 import {store } from "../store";
 import axios from "axios";
 import ProjectCard from '../components/ProjectCard.vue';
+import { resolveTypeElements } from "vue/compiler-sfc";
     export default {
     name: 'AppProjects',
     components: {
@@ -27,6 +32,8 @@ import ProjectCard from '../components/ProjectCard.vue';
     data() {
         return {
             store,
+            selectedType:null,
+            result:null
         };
     },
     methods: {
@@ -39,6 +46,12 @@ import ProjectCard from '../components/ProjectCard.vue';
                 console.log('error', err);
             });
         },
+        getAllTypes(){
+            axios.get(store.apiUrl + "/types" ).then((res)=>{
+                this.store.types= res.data
+                console.log(this.store.types);
+            })
+        },
         nextPage() {
             this.currentPage = this.currentPage + 1;
             this.getAllProjects();
@@ -48,9 +61,19 @@ import ProjectCard from '../components/ProjectCard.vue';
             this.getAllProjects();
         }
     },
+    computed:{
+        selectType(){
+           if (!this.selectedType) {
+            return this.store.projects
+           } 
+           return this.store.projects.filter((project)=> (this.selectedType === null || project.type_id === this.selectedType));
+        },
+    },
     mounted() {
         this.getAllProjects();
-    },
+        this.getAllTypes();
+    }
+   
 }
 </script>
 

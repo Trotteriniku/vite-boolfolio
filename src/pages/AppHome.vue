@@ -29,8 +29,8 @@ import {store } from "../store";
             }
         },
         components:{
-        ProjectPreview
-        },
+    ProjectPreview
+},
         methods:{
 
         },
