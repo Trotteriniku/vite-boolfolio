@@ -1,6 +1,8 @@
 <template>
-    <div class="p-5">
-        <img  v-if="project" :src="`${store.imgPath}${project.preview}`" class="card-img-top" alt="...">
+    <div class="p-5"  >
+        <img :src="`${store.imgPath}${project1.preview}`" class="card-img-top" alt="...">
+        
+       <h1 class="text-light">{{ project1.title }}</h1> 
         
     </div>
 </template>
@@ -10,20 +12,19 @@ import { store } from "../store";
 
     export default {
         name:"ProjectPreview",
+        props: ['project1'],
         data(){
             return{
                 store,
-                project:null
             }
         },
         components:{
 
         },
         methods:{
-
+           
         },
         mounted(){
-            
         }
     }
 </script>

@@ -15,27 +15,42 @@
             </div>
         </div>
 </div>
-<ProjectPreview></ProjectPreview>
+<div v-for="project in store.projects">
+    <ProjectPreview :project1="project"></ProjectPreview>
+</div>
+
 </template>
 
 <script>
 import ProjectPreview from "@/components/ProjectPreview.vue";
 import {store } from "../store";
+import axios from 'axios';
+
     export default {
         name:"AppHome",
         data(){
             return{
                 store,
+
             }
         },
         components:{
-    ProjectPreview
-},
+            ProjectPreview
+        },
         methods:{
-
+            getAllProjects() {
+            axios.get(store.apiUrl + "/projects", { params: { page: this.currentPage } }).then((res) => {
+                this.store.projects = res.data.data;
+                console.log('ciao',this.store.projects);
+                this.currentPage = res.data.current_page;
+                this.lastPage = res.data.last_page;
+            }).catch((err)=>{
+                console.log('error', err);
+            });
+            },
         },
         mounted(){
-
+            this.getAllProjects();
         }
     }
 </script>

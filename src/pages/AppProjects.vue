@@ -1,9 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container p-5">
         <h1 class="text-light display-1 fw-normal text-center">Project list</h1>
         <select name="types" id="types" v-model="selectedType">
             <option value="">All</option>
-            <option v-for="type in store.types" :value="type.id" @click="selectedType= type.id" :key="type_id" >{{ type.name }}</option>
+            <option v-for="type in store.types" :value="type.id" @click="selectedType= type.id" :key="type.id" >{{ type.name }}</option>
         </select>
         <div class=" d-flex text-center align-items-center  justify-content-between ">
             <i class="fa-solid fa-chevron-left fa-2xl arrow left-arrow me-5 pe-5 " @click="previousPage()"></i>
@@ -23,11 +23,12 @@
 import {store } from "../store";
 import axios from "axios";
 import ProjectCard from '../components/ProjectCard.vue';
-import { resolveTypeElements } from "vue/compiler-sfc";
+import ProjectPreview from "@/components/ProjectPreview.vue";
     export default {
     name: 'AppProjects',
     components: {
-        ProjectCard
+        ProjectCard,
+        ProjectPreview
     },
     data() {
         return {
